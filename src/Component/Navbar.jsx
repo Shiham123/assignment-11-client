@@ -1,9 +1,9 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <div>
-      <div className="navbar bg-colorOne rounded-lg p-8">
+      <div className="navbar bg-colorOne rounded-lg p-4">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -89,15 +89,19 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="flex items-center gap-4">
-            <img
-              className="rounded-full"
-              src="https://raw.githubusercontent.com/Shiham123/Assignment-11-img/master/_aecdaa03-7684-496f-a00a-ed8931d61b22.jpeg"
-              alt=""
-              width="50px"
-            />
-            <h5 className="font-poppins text-colorSix font-bold tracking-widest uppercase">
-              Job portal
-            </h5>
+            <Link to={'/'}>
+              <img
+                className="rounded-full"
+                src="https://raw.githubusercontent.com/Shiham123/Assignment-11-img/master/_aecdaa03-7684-496f-a00a-ed8931d61b22.jpeg"
+                alt=""
+                width="50px"
+              />
+            </Link>
+            <Link to="/">
+              <h5 className="font-poppins text-colorSix font-bold tracking-widest uppercase hover:text-colorFive">
+                Job portal
+              </h5>
+            </Link>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -108,7 +112,7 @@ const Navbar = () => {
                 isPending
                   ? 'pending'
                   : isActive
-                  ? 'text-colorFour px-4 font-poppins text-xl font-semibold'
+                  ? 'text-colorFive px-4 font-poppins text-xl font-semibold'
                   : 'text-colorSix px-4 font-poppins text-xl font-semibold'
               }
             >
@@ -120,7 +124,7 @@ const Navbar = () => {
                 isPending
                   ? 'pending'
                   : isActive
-                  ? 'text-colorFour px-4 font-poppins text-xl font-semibold'
+                  ? 'text-colorFive px-4 font-poppins text-xl font-semibold'
                   : 'text-colorSix px-4 font-poppins text-xl font-semibold'
               }
             >
@@ -132,7 +136,7 @@ const Navbar = () => {
                 isPending
                   ? 'pending'
                   : isActive
-                  ? 'text-colorFour px-4 font-poppins text-xl font-semibold'
+                  ? 'text-colorFive px-4 font-poppins text-xl font-semibold'
                   : 'text-colorSix px-4 font-poppins text-xl font-semibold'
               }
             >
@@ -144,7 +148,7 @@ const Navbar = () => {
                 isPending
                   ? 'pending'
                   : isActive
-                  ? 'text-colorFour px-4 font-poppins text-xl font-semibold'
+                  ? 'text-colorFive px-4 font-poppins text-xl font-semibold'
                   : 'text-colorSix px-4 font-poppins text-xl font-semibold'
               }
             >
@@ -156,7 +160,7 @@ const Navbar = () => {
                 isPending
                   ? 'pending'
                   : isActive
-                  ? 'text-colorFour px-4 font-poppins text-xl font-semibold'
+                  ? 'text-colorFive px-4 font-poppins text-xl font-semibold'
                   : 'text-colorSix px-4 font-poppins text-xl font-semibold'
               }
             >
@@ -164,8 +168,10 @@ const Navbar = () => {
             </NavLink>{' '}
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="navbar-end ">
+          <button className="bg-colorSix py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500">
+            Login
+          </button>
         </div>
       </div>
     </div>
