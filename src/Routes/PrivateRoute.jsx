@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../Context/context';
 import { Navigate, useLocation } from 'react-router-dom';
+
 import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ children }) => {
@@ -10,8 +11,12 @@ const PrivateRoute = ({ children }) => {
   const { user, isLoading } = context;
   const path = location.pathname;
 
-  if (isLoading) return console.log('spinner');
+  if (isLoading)
+    return <span className="loading loading-spinner loading-lg"></span>;
+
   if (user) return children;
+
+  console.log(user);
 
   return <Navigate state={path} to="/login" />;
 };
