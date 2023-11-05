@@ -95,7 +95,7 @@ const Navbar = () => {
               >
                 Bid Requests
               </NavLink>{' '}
-              <div className="lg:hidden md:block block">
+              <div className="lg:hidden md:block block my-4">
                 {user && (
                   <div className="flex justify-center items-center gap-5 mx-4">
                     <h1 className="text-sm font-semibold font-poppins text-colorFive">
@@ -110,22 +110,41 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
+              <div className="block md:block lg:hidden my-4">
+                <div className="flex items-center gap-4">
+                  <Link to={'/'}>
+                    <img
+                      className="rounded-full"
+                      src="https://raw.githubusercontent.com/Shiham123/Assignment-11-img/master/_aecdaa03-7684-496f-a00a-ed8931d61b22.jpeg"
+                      alt=""
+                      width="50px"
+                    />
+                  </Link>
+                  <Link to="/">
+                    <h5 className="font-poppins text-colorSix font-bold tracking-widest uppercase hover:text-colorFive">
+                      Job portal
+                    </h5>
+                  </Link>
+                </div>
+              </div>
             </ul>
           </div>
-          <div className="flex items-center gap-4">
-            <Link to={'/'}>
-              <img
-                className="rounded-full"
-                src="https://raw.githubusercontent.com/Shiham123/Assignment-11-img/master/_aecdaa03-7684-496f-a00a-ed8931d61b22.jpeg"
-                alt=""
-                width="50px"
-              />
-            </Link>
-            <Link to="/">
-              <h5 className="font-poppins text-colorSix font-bold tracking-widest uppercase hover:text-colorFive">
-                Job portal
-              </h5>
-            </Link>
+          <div className="hidden md:block lg:block">
+            <div className="flex items-center gap-4">
+              <Link to={'/'}>
+                <img
+                  className="rounded-full"
+                  src="https://raw.githubusercontent.com/Shiham123/Assignment-11-img/master/_aecdaa03-7684-496f-a00a-ed8931d61b22.jpeg"
+                  alt=""
+                  width="50px"
+                />
+              </Link>
+              <Link to="/">
+                <h5 className="font-poppins text-colorSix font-bold tracking-widest uppercase hover:text-colorFive">
+                  Job portal
+                </h5>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="navbar-center hidden lg:flex">
