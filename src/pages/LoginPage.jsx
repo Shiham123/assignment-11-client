@@ -1,12 +1,32 @@
 import { Link } from 'react-router-dom';
+import { AiOutlineGoogle } from 'react-icons/ai';
+import { useContext } from 'react';
+import { AppContext } from '../Context/context';
+
+import Swal from 'sweetalert2';
 
 const LoginPage = () => {
+  const context = useContext(AppContext);
+  const { signInGoogle } = context;
+
+  const handleGoogle = () => {
+    signInGoogle()
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          icon: 'success',
+          text: 'google login successfully',
+        });
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
-    <div className="">
+    <div className="m-auto text-center">
       <h1 className="m-auto text-center mt-12 text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300">
         Login Form
       </h1>
-      <form className="flex justify-center items-center flex-col my-[7rem]">
+      <form className="flex justify-center items-center flex-col my-[4rem]">
         <div className="form-control w-1/4 py-4">
           <label className="label">
             <span className="label-text font-poppins tracking-wide text-xl text-colorOne font-semibold uppercase">
@@ -16,7 +36,7 @@ const LoginPage = () => {
           <input
             type="email"
             placeholder="email"
-            className="p-4 border-none outline-none rounded-lg text-colorSix font-poppins tracking-wide text-xl capitalize"
+            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
             required
           />
         </div>
@@ -29,7 +49,7 @@ const LoginPage = () => {
           <input
             type="password"
             placeholder="password here"
-            className="p-4 border-none outline-none rounded-lg text-colorSix font-poppins tracking-wide text-xl capitalize"
+            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
             required
           />
         </div>
@@ -48,6 +68,14 @@ const LoginPage = () => {
           </button>
         </div>
       </form>
+      <button
+        onClick={handleGoogle}
+        className="bg-colorFour text-colorFive py-4 px-8 rounded-md text-xl font-semibold font-poppins  hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500"
+      >
+        <div className="flex justify-center items-center gap-8">
+          <AiOutlineGoogle size={40} /> <span>Login with Google</span>
+        </div>
+      </button>
     </div>
   );
 };
