@@ -79,7 +79,7 @@ const RegisterPage = () => {
         className="flex justify-center items-center flex-col my-[7rem]"
       >
         {/*  */}
-        <div className="form-control w-1/4 py-4">
+        <div className="form-control lg:w-1/4 md:w-3/4 w-full py-4">
           <label className="label">
             <span className="label-text font-poppins tracking-wide text-xl text-colorOne font-semibold uppercase">
               User name
@@ -94,7 +94,7 @@ const RegisterPage = () => {
           />
         </div>
         {/*  */}
-        <div className="form-control w-1/4 py-4">
+        <div className="form-control lg:w-1/4 md:w-3/4 w-full py-4">
           <label className="label">
             <span className="label-text font-poppins tracking-wide text-xl text-colorOne font-semibold uppercase">
               Email
@@ -109,7 +109,7 @@ const RegisterPage = () => {
           />
         </div>
         {/*  */}
-        <div className="form-control w-1/4 py-4">
+        <div className="form-control lg:w-1/4 md:w-3/4 w-full py-4">
           <label className="label">
             <span className="label-text font-poppins tracking-wide text-xl text-colorOne font-semibold uppercase">
               Password
@@ -124,7 +124,7 @@ const RegisterPage = () => {
           />
         </div>
         {/*  */}
-        <div className="form-control w-1/4 py-4">
+        <div className="form-control lg:w-1/4 md:w-3/4 w-full py-4">
           <label className="label">
             <span className="label-text font-poppins tracking-wide text-xl text-colorOne font-semibold uppercase">
               Photo Url
@@ -148,7 +148,7 @@ const RegisterPage = () => {
             </span>
           </Link>
         </p>
-        <div className="form-control mt-6 w-1/4">
+        <div className="form-control mt-6 lg:w-1/4 md:w-3/4 w-full">
           <button className="bg-colorFour text-colorFive py-4 px-8 rounded-md text-xl font-semibold font-poppins  hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500">
             Register
           </button>
