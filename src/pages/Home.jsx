@@ -1,4 +1,6 @@
 import BannerSection from '../Component/BannerSection';
+import FaqSection from '../Component/FaqSection';
+import FooterSection from '../Component/FooterSection';
 import TabsSection from '../Component/TabsSection';
 
 const HomePage = () => {
@@ -6,6 +8,8 @@ const HomePage = () => {
     <>
       <BannerSection />
       <TabsSection />
+      <FaqSection />
+      <FooterSection />
     </>
   );
 };
