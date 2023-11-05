@@ -2,6 +2,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
 import { useContext } from 'react';
 import { AppContext } from '../Context/context';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
   const context = useContext(AppContext);
@@ -12,7 +13,13 @@ const Navbar = () => {
 
   const logOutUser = () => {
     logOut()
-      .then((result) => console.log(result))
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          icon: 'success',
+          text: 'Logout successfully',
+        });
+      })
       .catch((error) => console.log(error));
   };
 

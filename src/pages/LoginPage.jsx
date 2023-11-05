@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { AiOutlineGoogle } from 'react-icons/ai';
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { AppContext } from '../Context/context';
 
 import Swal from 'sweetalert2';
@@ -8,6 +8,8 @@ import Swal from 'sweetalert2';
 const LoginPage = () => {
   const context = useContext(AppContext);
   const { signInGoogle, loginByEmailPassword } = context;
+
+  const formRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +24,7 @@ const LoginPage = () => {
           icon: 'success',
           text: 'Login successfully',
         });
+        formRef.current.reset();
       })
       .catch((error) => {
         console.log(error);
@@ -40,6 +43,7 @@ const LoginPage = () => {
           icon: 'success',
           text: 'google login successfully',
         });
+        formRef.current.reset();
       })
       .catch((error) => console.log(error));
   };
@@ -51,6 +55,7 @@ const LoginPage = () => {
       </h1>
       <form
         onSubmit={handleSubmit}
+        ref={formRef}
         className="flex justify-center items-center flex-col my-[4rem]"
       >
         <div className="form-control w-1/4 py-4">

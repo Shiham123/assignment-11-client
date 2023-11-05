@@ -1,12 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../Context/context';
 import Swal from 'sweetalert2';
+
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RegisterPage = () => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
   const { createUserByEmailPassword, logOut, showingProfile } = context;
+  const formRef = useRef(null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,6 +19,28 @@ const RegisterPage = () => {
     const email = formData.get('email');
     const url = formData.get('url');
     const password = formData.get('password');
+
+    let passwordTest = null;
+
+    if (password.length < 7) {
+      toast('password must be 7 characters');
+      passwordTest = true;
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      toast('password must contain at least one capital');
+      passwordTest = true;
+    }
+
+    if (!/[!@#$%^&*()_+[\]{};':"\\|,.<>/?]+/.test(password)) {
+      toast('password must contain special character');
+      passwordTest = true;
+    }
+
+    if (passwordTest) {
+      console.log(passwordTest);
+      return;
+    }
 
     createUserByEmailPassword(email, password)
       .then((result) => {
@@ -34,6 +60,7 @@ const RegisterPage = () => {
               text: 'User created successfully',
               footer: 'please login',
             });
+            formRef.current.reset();
           })
           .catch((error) => console.log(error));
       })
@@ -42,10 +69,12 @@ const RegisterPage = () => {
 
   return (
     <div className="">
+      <ToastContainer />
       <h1 className="m-auto text-center mt-12 text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300">
         Register Form
       </h1>
       <form
+        ref={formRef}
         onSubmit={handleSubmit}
         className="flex justify-center items-center flex-col my-[7rem]"
       >
