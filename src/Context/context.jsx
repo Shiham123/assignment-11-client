@@ -26,6 +26,7 @@ const AppProvider = ({ children }) => {
   };
 
   const loginByEmailPassword = (email, password) => {
+    setIsLoading(true);
     return signInWithEmailAndPassword(globalAuth, email, password);
   };
 

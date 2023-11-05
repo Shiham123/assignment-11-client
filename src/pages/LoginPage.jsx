@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineGoogle } from 'react-icons/ai';
 import { useContext, useRef } from 'react';
 import { AppContext } from '../Context/context';
@@ -8,6 +8,10 @@ import Swal from 'sweetalert2';
 const LoginPage = () => {
   const context = useContext(AppContext);
   const { signInGoogle, loginByEmailPassword } = context;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location);
 
   const formRef = useRef(null);
 
@@ -20,6 +24,7 @@ const LoginPage = () => {
     loginByEmailPassword(email, password)
       .then((result) => {
         console.log(result);
+        navigate(location?.state ? location.state : '/');
         Swal.fire({
           icon: 'success',
           text: 'Login successfully',
@@ -39,6 +44,7 @@ const LoginPage = () => {
     signInGoogle()
       .then((result) => {
         console.log(result);
+        navigate(location?.state ? location.state : '/');
         Swal.fire({
           icon: 'success',
           text: 'google login successfully',

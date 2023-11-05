@@ -8,6 +8,7 @@ import AddJob from '../pages/AddJob';
 import MyPostedJob from '../pages/MyPostedJob';
 import MyBids from '../pages/MyBids';
 import BidRequest from '../pages/BidRequest';
+import PrivateRoute from './PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -18,10 +19,38 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: '/login', element: <LoginPage /> },
       { path: '/register', element: <RegisterPage /> },
-      { path: '/addJob', element: <AddJob /> },
-      { path: '/myPostedJob', element: <MyPostedJob /> },
-      { path: '/myBids', element: <MyBids /> },
-      { path: '/bidRequest', element: <BidRequest /> },
+      {
+        path: '/addJob',
+        element: (
+          <PrivateRoute>
+            <AddJob />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/myPostedJob',
+        element: (
+          <PrivateRoute>
+            <MyPostedJob />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/myBids',
+        element: (
+          <PrivateRoute>
+            <MyBids />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: '/bidRequest',
+        element: (
+          <PrivateRoute>
+            <BidRequest />
+          </PrivateRoute>
+        ),
+      },
     ],
   },
 ]);

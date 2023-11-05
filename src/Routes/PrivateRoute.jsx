@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { AppContext } from '../Context/context';
 import { Navigate, useLocation } from 'react-router-dom';
-import { Spinner } from '@material-tailwind/react';
 import PropTypes from 'prop-types';
 
 const PrivateRoute = ({ children }) => {
@@ -11,7 +10,7 @@ const PrivateRoute = ({ children }) => {
   const { user, isLoading } = context;
   const path = location.pathname;
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return console.log('spinner');
   if (user) return children;
 
   return <Navigate state={path} to="/login" />;
