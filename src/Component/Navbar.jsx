@@ -1,4 +1,5 @@
 import { NavLink, Link } from 'react-router-dom';
+import { FiAlignJustify } from 'react-icons/fi';
 
 const Navbar = () => {
   return (
@@ -7,20 +8,7 @@ const Navbar = () => {
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
+              <FiAlignJustify color="white" size={30} />
             </label>
             <ul
               tabIndex={0}
@@ -32,7 +20,7 @@ const Navbar = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'text-colorFour px-4 font-poppins text-xl font-semibold py-4'
+                    ? 'text-colorFive px-4 font-poppins text-xl font-semibold py-4'
                     : 'text-colorSix px-4 font-poppins text-xl font-semibold py-4'
                 }
               >
@@ -44,7 +32,7 @@ const Navbar = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'text-colorFour px-4 font-poppins text-xl font-semibold py-4'
+                    ? 'text-colorFive px-4 font-poppins text-xl font-semibold py-4'
                     : 'text-colorSix px-4 font-poppins text-xl font-semibold py-4'
                 }
               >
@@ -56,7 +44,7 @@ const Navbar = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'text-colorFour px-4 font-poppins text-xl font-semibold py-4'
+                    ? 'text-colorFive px-4 font-poppins text-xl font-semibold py-4'
                     : 'text-colorSix px-4 font-poppins text-xl font-semibold py-4'
                 }
               >
@@ -68,7 +56,7 @@ const Navbar = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'text-colorFour px-4 font-poppins text-xl font-semibold py-4'
+                    ? 'text-colorFive px-4 font-poppins text-xl font-semibold py-4'
                     : 'text-colorSix px-4 font-poppins text-xl font-semibold py-4'
                 }
               >
@@ -80,7 +68,7 @@ const Navbar = () => {
                   isPending
                     ? 'pending'
                     : isActive
-                    ? 'text-colorFour px-4 font-poppins text-xl font-semibold py-4'
+                    ? 'text-colorFive px-4 font-poppins text-xl font-semibold py-4'
                     : 'text-colorSix px-4 font-poppins text-xl font-semibold py-4'
                 }
               >
