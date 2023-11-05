@@ -12,11 +12,13 @@ const PrivateRoute = ({ children }) => {
   const path = location.pathname;
 
   if (isLoading)
-    return <span className="loading loading-spinner loading-lg"></span>;
+    return (
+      <div className="flex justify-center items-center w-full my-[10rem]">
+        <span className="loading loading-spinner loading-lg"></span>
+      </div>
+    );
 
   if (user) return children;
-
-  console.log(user);
 
   return <Navigate state={path} to="/login" />;
 };
