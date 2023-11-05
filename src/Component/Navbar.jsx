@@ -157,9 +157,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
-          <button className="bg-colorSix py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500">
-            Login
-          </button>
+          <Link to="/login">
+            <button className="bg-colorSix py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500">
+              Login
+            </button>
+          </Link>
         </div>
       </div>
     </div>
