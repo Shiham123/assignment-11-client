@@ -1,7 +1,21 @@
 import { NavLink, Link } from 'react-router-dom';
 import { FiAlignJustify } from 'react-icons/fi';
+import { useContext } from 'react';
+import { AppContext } from '../Context/context';
 
 const Navbar = () => {
+  const context = useContext(AppContext);
+  const { user, logOut } = context;
+
+  const photoUrl = user?.photoURL;
+  const displayName = user?.displayName;
+
+  const logOutUser = () => {
+    logOut()
+      .then((result) => console.log(result))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       <div className="navbar bg-colorOne rounded-lg p-4">
@@ -74,6 +88,21 @@ const Navbar = () => {
               >
                 Bid Requests
               </NavLink>{' '}
+              <div className="lg:hidden md:block block">
+                {user && (
+                  <div className="flex justify-center items-center gap-5 mx-4">
+                    <h1 className="text-sm font-semibold font-poppins text-colorFive">
+                      {displayName}
+                    </h1>
+                    <img
+                      className="rounded-full border-2 p-1 border-colorSix object-cover"
+                      src={photoUrl}
+                      alt=""
+                      width="70px"
+                    />
+                  </div>
+                )}
+              </div>
             </ul>
           </div>
           <div className="flex items-center gap-4">
@@ -157,11 +186,36 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end ">
-          <Link to="/login">
-            <button className="bg-colorSix py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500">
-              Login/Register
+          <div className="hidden md:hidden lg:block">
+            {user && (
+              <div className="flex justify-center items-center gap-5 mx-4">
+                <h1 className="text-sm font-semibold font-poppins text-colorFive">
+                  {displayName}
+                </h1>
+                <img
+                  className="rounded-full border-2 p-1 border-colorSix object-cover"
+                  src={photoUrl}
+                  alt=""
+                  width="70px"
+                />
+              </div>
+            )}
+          </div>
+
+          {user ? (
+            <button
+              onClick={logOutUser}
+              className="bg-colorSix py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500"
+            >
+              Log Out
             </button>
-          </Link>
+          ) : (
+            <Link to="/login">
+              <button className="bg-colorSix py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorSix duration-500">
+                Login/Register
+              </button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
