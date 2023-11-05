@@ -7,7 +7,30 @@ import Swal from 'sweetalert2';
 
 const LoginPage = () => {
   const context = useContext(AppContext);
-  const { signInGoogle } = context;
+  const { signInGoogle, loginByEmailPassword } = context;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    loginByEmailPassword(email, password)
+      .then((result) => {
+        console.log(result);
+        Swal.fire({
+          icon: 'success',
+          text: 'Login successfully',
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          text: 'Login failed',
+        });
+      });
+  };
 
   const handleGoogle = () => {
     signInGoogle()
@@ -26,7 +49,10 @@ const LoginPage = () => {
       <h1 className="m-auto text-center mt-12 text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300">
         Login Form
       </h1>
-      <form className="flex justify-center items-center flex-col my-[4rem]">
+      <form
+        onSubmit={handleSubmit}
+        className="flex justify-center items-center flex-col my-[4rem]"
+      >
         <div className="form-control w-1/4 py-4">
           <label className="label">
             <span className="label-text font-poppins tracking-wide text-xl text-colorOne font-semibold uppercase">
@@ -36,7 +62,8 @@ const LoginPage = () => {
           <input
             type="email"
             placeholder="email"
-            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
+            name="email"
+            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl"
             required
           />
         </div>
@@ -49,7 +76,8 @@ const LoginPage = () => {
           <input
             type="password"
             placeholder="password here"
-            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
+            name="password"
+            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl"
             required
           />
         </div>

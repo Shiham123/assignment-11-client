@@ -1,12 +1,54 @@
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../Context/context';
+import Swal from 'sweetalert2';
 
 const RegisterPage = () => {
+  const context = useContext(AppContext);
+  const navigate = useNavigate();
+  const { createUserByEmailPassword, logOut, showingProfile } = context;
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const userName = formData.get('username');
+    const email = formData.get('email');
+    const url = formData.get('url');
+    const password = formData.get('password');
+
+    createUserByEmailPassword(email, password)
+      .then((result) => {
+        console.log(result);
+
+        navigate('/login');
+
+        showingProfile(userName, url)
+          .then((result) => console.log(result))
+          .catch((error) => console.log(error));
+
+        logOut()
+          .then((result) => {
+            console.log(result);
+            Swal.fire({
+              icon: 'success',
+              text: 'User created successfully',
+              footer: 'please login',
+            });
+          })
+          .catch((error) => console.log(error));
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="">
       <h1 className="m-auto text-center mt-12 text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300">
         Register Form
       </h1>
-      <form className="flex justify-center items-center flex-col my-[7rem]">
+      <form
+        onSubmit={handleSubmit}
+        className="flex justify-center items-center flex-col my-[7rem]"
+      >
         {/*  */}
         <div className="form-control w-1/4 py-4">
           <label className="label">
@@ -17,6 +59,7 @@ const RegisterPage = () => {
           <input
             type="text"
             placeholder="name here"
+            name="username"
             className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
             required
           />
@@ -31,7 +74,8 @@ const RegisterPage = () => {
           <input
             type="email"
             placeholder="email"
-            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
+            name="email"
+            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl"
             required
           />
         </div>
@@ -45,7 +89,8 @@ const RegisterPage = () => {
           <input
             type="password"
             placeholder="password here"
-            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
+            name="password"
+            className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl"
             required
           />
         </div>
@@ -59,6 +104,7 @@ const RegisterPage = () => {
           <input
             type="url"
             placeholder="Url here"
+            name="url"
             className="p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl capitalize"
             required
           />

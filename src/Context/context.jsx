@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from 'firebase/auth';
 import PropTypes from 'prop-types';
 
@@ -33,6 +34,15 @@ const AppProvider = ({ children }) => {
     return signInWithPopup(globalAuth, googleAuthProvider);
   };
 
+  const showingProfile = (userName, photoUrl) => {
+    setIsLoading(true);
+
+    return updateProfile(globalAuth.currentUser, {
+      displayName: userName,
+      photoURL: photoUrl,
+    });
+  };
+
   const logOut = () => {
     return signOut(globalAuth);
   };
@@ -53,6 +63,7 @@ const AppProvider = ({ children }) => {
     loginByEmailPassword,
     logOut,
     signInGoogle,
+    showingProfile,
     isLoading,
     user,
   };
