@@ -19,7 +19,20 @@ const UpdateJob = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
     const title = formData.get('jobTitle');
-    const dataUpdate = { title };
+    const deadline = formData.get('deadline');
+    const description = formData.get('jobDescription');
+    const category = formData.get('category');
+    const lowPrice = formData.get('minPrice');
+    const highPrice = formData.get('maxPrice');
+
+    const dataUpdate = {
+      title,
+      deadline,
+      description,
+      category,
+      lowPrice,
+      highPrice,
+    };
 
     axios
       .put(`http://localhost:5000/jobs/${_id}`, dataUpdate)
