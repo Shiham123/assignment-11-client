@@ -2,11 +2,13 @@ import { useContext, useRef } from 'react';
 import { AppContext } from '../Context/context';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AddJob = () => {
   const formRef = useRef(null);
   const context = useContext(AppContext);
   const { user } = context;
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +38,7 @@ const AddJob = () => {
           icon: 'success',
           text: 'Job posted successfully',
         });
+        navigate('/myPostedJob');
       })
       .catch((error) => console.log(error));
 
