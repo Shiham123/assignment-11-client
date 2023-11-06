@@ -1,4 +1,5 @@
 import { useLoaderData } from 'react-router-dom';
+import BidForm from './BidForm';
 
 const JobDetails = () => {
   const loader = useLoaderData();
@@ -27,6 +28,9 @@ const JobDetails = () => {
           {jobDescription}
         </p>
       </div>
+
+      {/*  */}
+      <BidForm loader={loader} />
     </div>
   );
 };
