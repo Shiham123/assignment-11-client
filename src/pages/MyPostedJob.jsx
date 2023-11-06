@@ -18,6 +18,17 @@ const MyPostedJob = () => {
       .catch((error) => console.log(error));
   }, [contextEmail]);
 
+  const deleteJob = (id) => {
+    axios
+      .delete(`http://localhost:5000/jobPosted/id/${id}`)
+      .then((response) => {
+        console.log(response);
+        const updateData = userData.filter((item) => item._id !== id);
+        setUserData(updateData);
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-8 my-[5rem]">
       {userData.map((item) => {
@@ -38,7 +49,10 @@ const MyPostedJob = () => {
               <button className="border-2 border-colorOne text-sm md:text-xl lg:text-2xl px-4 py-2 hover:bg-colorSix hover:text-colorTwo duration-300 font-poppins uppercase font-semibold tracking-wider rounded-lg">
                 Update job
               </button>
-              <button className="border-2 border-colorOne text-sm md:text-xl lg:text-2xl px-4 py-2 hover:bg-colorSix hover:text-colorTwo duration-300 font-poppins uppercase font-semibold tracking-wider rounded-lg">
+              <button
+                onClick={() => deleteJob(_id)}
+                className="border-2 border-colorOne text-sm md:text-xl lg:text-2xl px-4 py-2 hover:bg-colorSix hover:text-colorTwo duration-300 font-poppins uppercase font-semibold tracking-wider rounded-lg"
+              >
                 Delete job
               </button>
             </div>
