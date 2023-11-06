@@ -1,7 +1,10 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
+import { AppContext } from '../Context/context';
 
 const AddJob = () => {
   const formRef = useRef(null);
+  const context = useContext(AppContext);
+  const { user } = context;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +25,18 @@ const AddJob = () => {
       jobMinPrice,
       jobMaxPrice,
     };
-    console.log(jobInfo);
+
+    fetch('http://localhost:5000/jobs', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(jobInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+
     formRef.current.reset();
   };
   return (
@@ -49,6 +63,8 @@ const AddJob = () => {
               name="email"
               className="w-full p-4 border-none outline-none rounded-lg text-colorOne font-poppins tracking-wide text-xl"
               required
+              defaultValue={user?.email}
+              readOnly
             />
           </div>
           <div className="w-full md:w-1/2 lg:w-1/2">
@@ -147,7 +163,7 @@ const AddJob = () => {
           type="submit"
           className="bg-colorSix w-full py-4 px-8 rounded-md text-xl font-semibold font-poppins text-colorOne hover:bg-colorOne hover:text-colorSix border-2 border-colorOne duration-500"
         >
-          Login/Register
+          Add Job
         </button>
       </form>
     </div>
