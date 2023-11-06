@@ -1,5 +1,7 @@
 import { useContext, useRef } from 'react';
 import { AppContext } from '../Context/context';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddJob = () => {
   const formRef = useRef(null);
@@ -26,15 +28,15 @@ const AddJob = () => {
       jobMaxPrice,
     };
 
-    fetch('http://localhost:5000/jobs', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(jobInfo),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
+    axios
+      .post('http://localhost:5000/jobs', jobInfo)
+      .then((response) => {
+        console.log(response.data);
+        Swal.fire({
+          icon: 'success',
+          text: 'Job posted successfully',
+        });
+      })
       .catch((error) => console.log(error));
 
     formRef.current.reset();

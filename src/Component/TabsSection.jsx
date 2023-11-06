@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
@@ -13,10 +14,7 @@ const TabsSection = () => {
   useEffect(() => {
     fetch(`http://localhost:5000/jobsCategory/${category}`)
       .then((response) => response.json())
-      .then((data) => {
-        // console.log(data);
-        setFilterByCategory(data);
-      })
+      .then((data) => setFilterByCategory(data))
       .catch((error) => console.log(error));
   }, [category]);
 
@@ -54,6 +52,7 @@ const TabsSection = () => {
           <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-4 m-8">
             {filterByCategory.map((item, index) => {
               const {
+                _id,
                 jobTitle,
                 jobDeadline,
                 jobMaxPrice,
@@ -78,9 +77,11 @@ const TabsSection = () => {
                   <p className="text-sm md:text-md lg:text-xl my-2 font-poppins font-normal leading-10">
                     {jobDescription}
                   </p>
-                  <button className="my-8 border-2 border-colorTwo px-6 py-2 capitalize font-poppins text-xl font-bold hover:bg-colorSix hover:text-colorOne duration-300">
-                    bid now
-                  </button>
+                  <Link to={`/jobDetails/${_id}`}>
+                    <button className="my-8 border-2 border-colorTwo px-6 py-2 capitalize font-poppins text-xl font-bold hover:bg-colorSix hover:text-colorOne duration-300">
+                      bid now
+                    </button>
+                  </Link>
                 </div>
               );
             })}
@@ -91,6 +92,7 @@ const TabsSection = () => {
           <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-4 m-8">
             {filterByCategory.map((item, index) => {
               const {
+                _id,
                 jobTitle,
                 jobDeadline,
                 jobMaxPrice,
@@ -115,9 +117,11 @@ const TabsSection = () => {
                   <p className="text-sm md:text-md lg:text-xl my-2 font-poppins font-normal leading-10">
                     {jobDescription}
                   </p>
-                  <button className="my-8 border-2 border-colorTwo px-6 py-2 capitalize font-poppins text-xl font-bold hover:bg-colorSix hover:text-colorOne duration-300">
-                    bid now
-                  </button>
+                  <Link to={`/jobDetails/${_id}`}>
+                    <button className="my-8 border-2 border-colorTwo px-6 py-2 capitalize font-poppins text-xl font-bold hover:bg-colorSix hover:text-colorOne duration-300">
+                      bid now
+                    </button>
+                  </Link>
                 </div>
               );
             })}
@@ -128,6 +132,7 @@ const TabsSection = () => {
           <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 lg:grid lg:grid-cols-4 gap-4 m-8">
             {filterByCategory.map((item, index) => {
               const {
+                _id,
                 jobTitle,
                 jobDeadline,
                 jobMaxPrice,
@@ -152,9 +157,11 @@ const TabsSection = () => {
                   <p className="text-sm md:text-md lg:text-xl my-2 font-poppins font-normal leading-10">
                     {jobDescription}
                   </p>
-                  <button className="my-8 border-2 border-colorTwo px-6 py-2 capitalize font-poppins text-xl font-bold hover:bg-colorSix hover:text-colorOne duration-300">
-                    bid now
-                  </button>
+                  <Link to={`/jobDetails/${_id}`}>
+                    <button className="my-8 border-2 border-colorTwo px-6 py-2 capitalize font-poppins text-xl font-bold hover:bg-colorSix hover:text-colorOne duration-300">
+                      bid now
+                    </button>
+                  </Link>
                 </div>
               );
             })}
