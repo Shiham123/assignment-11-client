@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../Context/context';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const MyPostedJob = () => {
   const context = useContext(AppContext);
@@ -46,9 +47,11 @@ const MyPostedJob = () => {
             </h3>
 
             <div className="flex justify-center items-center gap-8 my-5">
-              <button className="border-2 border-colorOne text-sm md:text-xl lg:text-2xl px-4 py-2 hover:bg-colorSix hover:text-colorTwo duration-300 font-poppins uppercase font-semibold tracking-wider rounded-lg">
-                Update job
-              </button>
+              <Link to={`/jobUpdate/${_id}`}>
+                <button className="border-2 border-colorOne text-sm md:text-xl lg:text-2xl px-4 py-2 hover:bg-colorSix hover:text-colorTwo duration-300 font-poppins uppercase font-semibold tracking-wider rounded-lg">
+                  Update job
+                </button>
+              </Link>
               <button
                 onClick={() => deleteJob(_id)}
                 className="border-2 border-colorOne text-sm md:text-xl lg:text-2xl px-4 py-2 hover:bg-colorSix hover:text-colorTwo duration-300 font-poppins uppercase font-semibold tracking-wider rounded-lg"
