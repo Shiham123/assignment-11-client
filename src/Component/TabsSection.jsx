@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -12,9 +13,14 @@ const TabsSection = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/jobsCategory/${category}`)
-      .then((response) => response.json())
-      .then((data) => setFilterByCategory(data))
+    axios
+      .get(`http://localhost:5000/jobsCategory/${category}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        // console.log(response);
+        setFilterByCategory(response.data);
+      })
       .catch((error) => console.log(error));
   }, [category]);
 

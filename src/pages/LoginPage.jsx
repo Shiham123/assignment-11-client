@@ -4,6 +4,7 @@ import { useContext, useRef } from 'react';
 import { AppContext } from '../Context/context';
 
 import Swal from 'sweetalert2';
+import axios from 'axios';
 
 const LoginPage = () => {
   const context = useContext(AppContext);
@@ -25,6 +26,17 @@ const LoginPage = () => {
       .then((result) => {
         console.log(result);
         navigate(location?.state ? location.state : '/');
+
+        const user = { email };
+        axios
+          .post('http://localhost:5000/jwt', user, { withCredentials: true })
+          .then((response) => {
+            console.log(response);
+            if (response.data.success) {
+              navigate(location?.state ? location.state : '/');
+            }
+          })
+          .catch((error) => console.log(error));
         Swal.fire({
           icon: 'success',
           text: 'Login successfully',
