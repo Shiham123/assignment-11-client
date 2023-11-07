@@ -13,7 +13,7 @@ const MyBids = () => {
     axios
       .get(`http://localhost:5000/bidJob?email=${loggedInUser}`)
       .then((response) => {
-        // console.log(response.data);
+        console.log(response.data);
         setData(response.data);
       })
       .catch((error) => console.log(error));
@@ -65,9 +65,13 @@ const MyBids = () => {
                       {status}
                     </td>
                     <td className="p-2">
-                      <button className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300">
-                        Action Taken
-                      </button>
+                      {status === 'confirm' ? (
+                        <button className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300">
+                          complete
+                        </button>
+                      ) : (
+                        ''
+                      )}
                     </td>
                   </tr>
                 );
