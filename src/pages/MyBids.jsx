@@ -89,8 +89,15 @@ const MyBids = () => {
                         >
                           complete
                         </button>
+                      ) : status === 'pending' ? (
+                        <button
+                          disabled
+                          className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                        >
+                          complete
+                        </button>
                       ) : (
-                        status === 'completed' && ''
+                        ''
                       )}
                     </td>
                   </tr>

@@ -112,18 +112,69 @@ const BidRequest = () => {
                       {status}
                     </td>
                     <td className="p-2 flex flex-col gap-4">
-                      <button
-                        onClick={() => handleAccept(_id)}
-                        className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                      >
-                        Accept Bid
-                      </button>
-                      <button
-                        onClick={() => handleReject(_id)}
-                        className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                      >
-                        Reject Bid
-                      </button>
+                      {status === 'progress' ? (
+                        <div>
+                          <button
+                            onClick={() => handleAccept(_id)}
+                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Accept Bid
+                          </button>
+                          <button
+                            onClick={() => handleReject(_id)}
+                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Reject Bid
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <button
+                            onClick={() => handleAccept(_id)}
+                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Accept Bid
+                          </button>
+                          <button
+                            onClick={() => handleReject(_id)}
+                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Reject Bid
+                          </button>
+                        </div>
+                      )}
+
+                      {status === 'rejected' ? (
+                        <div>
+                          <button
+                            onClick={() => handleAccept(_id)}
+                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Accept Bid
+                          </button>
+                          <button
+                            onClick={() => handleReject(_id)}
+                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Reject Bid
+                          </button>
+                        </div>
+                      ) : (
+                        <div>
+                          <button
+                            onClick={() => handleAccept(_id)}
+                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Accept Bid
+                          </button>
+                          <button
+                            onClick={() => handleReject(_id)}
+                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                          >
+                            Reject Bid
+                          </button>
+                        </div>
+                      )}
                     </td>
                   </tr>
                 );

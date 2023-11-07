@@ -67,7 +67,7 @@ const TabsSection = () => {
               return (
                 <div
                   key={index}
-                  className="border-2 border-colorOne p-8 hover:bg-colorOne text-colorTwo hover:text-colorSix hover:scale-110 duration-300"
+                  className="border-2 h-full border-colorOne p-8 hover:bg-colorOne text-colorTwo hover:text-colorSix hover:scale-110 duration-300"
                 >
                   <h2 className="text-3xl font-poppins font-bold capitalize tracking-wide">
                     Job Title : {jobTitle}
@@ -107,7 +107,7 @@ const TabsSection = () => {
               return (
                 <div
                   key={index}
-                  className="border-2 border-colorOne p-8 hover:bg-colorOne text-colorTwo hover:text-colorSix hover:scale-110 duration-300"
+                  className="h-full border-2 border-colorOne p-8 hover:bg-colorOne text-colorTwo hover:text-colorSix hover:scale-110 duration-300"
                 >
                   <h2 className="text-3xl font-poppins font-bold capitalize tracking-wide">
                     Job Title : {jobTitle}
@@ -147,7 +147,7 @@ const TabsSection = () => {
               return (
                 <div
                   key={index}
-                  className="border-2 border-colorOne p-8 hover:bg-colorOne text-colorTwo hover:text-colorSix hover:scale-110 duration-300"
+                  className="h-full border-2 border-colorOne p-8 hover:bg-colorOne text-colorTwo hover:text-colorSix hover:scale-110 duration-300"
                 >
                   <h2 className="text-3xl font-poppins font-bold capitalize tracking-wide">
                     Job Title : {jobTitle}
