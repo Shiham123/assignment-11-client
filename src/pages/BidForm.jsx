@@ -24,7 +24,6 @@ const BidForm = (props) => {
       loginUserEmail,
       jobDeadline,
       status: 'pending',
-      added: 'true',
     };
 
     axios
