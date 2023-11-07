@@ -19,6 +19,41 @@ const BidRequest = () => {
       .catch((error) => console.log(error));
   }, [loggedInEmployer]);
 
+  const handleAccept = (id) => {
+    const statusData = { status: 'confirm' };
+
+    const updatedStatus = bidData.map((item) => {
+      if (item._id === id) {
+        return { ...item, status: 'confirm' };
+      }
+      return item;
+    });
+
+    setBidData(updatedStatus);
+
+    axios
+      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  };
+
+  const handleReject = (id) => {
+    const statusData = { status: 'rejected' };
+
+    const updatedStatus = bidData.map((item) => {
+      if (item._id === id) {
+        return { ...item, status: 'rejected' };
+      }
+      return item;
+    });
+
+    setBidData(updatedStatus);
+    axios
+      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="my-[3rem] mx-[2rem]">
       <div className="overflow-x-auto">
@@ -35,6 +70,9 @@ const BidRequest = () => {
                 Deadline
               </th>
               <th className="font-poppins text-xl md:text-2xl lg:text-3xl py-4 tracking-wider uppercase">
+                Bid Price
+              </th>
+              <th className="font-poppins text-xl md:text-2xl lg:text-3xl py-4 tracking-wider uppercase">
                 Status
               </th>
               <th className="font-poppins text-xl md:text-2xl lg:text-3xl py-4 tracking-wider uppercase">
@@ -45,8 +83,14 @@ const BidRequest = () => {
           <tbody>
             {bidData &&
               bidData.map((item) => {
-                const { _id, jobTitle, jobDeadline, status, loginUserEmail } =
-                  item;
+                const {
+                  _id,
+                  jobTitle,
+                  jobDeadline,
+                  status,
+                  loginUserEmail,
+                  bidPrice,
+                } = item;
                 return (
                   <tr
                     className="bg-colorTwo text-colorSix border-t-2 border-colorFour"
@@ -62,11 +106,23 @@ const BidRequest = () => {
                       {jobDeadline}
                     </td>
                     <td className="text-sm md:text-xl lg:text-2xl font-poppins py-8 capitalize font-semibold">
+                      ${bidPrice}
+                    </td>
+                    <td className="text-sm md:text-xl lg:text-2xl font-poppins py-8 capitalize font-semibold">
                       {status}
                     </td>
-                    <td className="p-2">
-                      <button className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300">
-                        Action Taken
+                    <td className="p-2 flex flex-col gap-4">
+                      <button
+                        onClick={() => handleAccept(_id)}
+                        className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                      >
+                        Accept Bid
+                      </button>
+                      <button
+                        onClick={() => handleReject(_id)}
+                        className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                      >
+                        Reject Bid
                       </button>
                     </td>
                   </tr>
