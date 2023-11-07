@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'; // Im
 import { AppContext } from '../Context/context';
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 
 import Swal from 'sweetalert2';
@@ -10,55 +10,34 @@ const BidForm = (props) => {
   const context = useContext(AppContext);
   const navigate = useNavigate();
 
-  const [alreadyBid, setALreadyBid] = useState(false);
-
   const { user } = context;
   const loginUserEmail = user?.email;
 
   const { loader } = props;
   const { jobTitle, employerEmail, jobDeadline } = loader;
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/bidJob')
-      .then((response) => {
-        const hasAddedTrue = response.data.some(
-          (item) => item.added === 'true'
-        );
-        if (hasAddedTrue === true) setALreadyBid(true);
-      })
-      .catch((error) => console.log(error));
-  }, []);
-
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (alreadyBid) {
-      Swal.fire({
-        icon: 'warning',
-        text: 'You have already added this bid.',
-      });
-    } else {
-      const bidInfo = {
-        jobTitle,
-        loginUserEmail,
-        jobDeadline,
-        status: 'pending',
-        added: 'true',
-      };
+    const bidInfo = {
+      jobTitle,
+      loginUserEmail,
+      jobDeadline,
+      status: 'pending',
+      added: 'true',
+    };
 
-      axios
-        .post('http://localhost:5000/bidJob', bidInfo)
-        .then((response) => {
-          console.log(response.data);
-          Swal.fire({
-            icon: 'success',
-            text: 'Success fully bid on this job',
-          });
-          navigate('/');
-        })
-        .catch((error) => console.log(error));
-    }
+    axios
+      .post('http://localhost:5000/bidJob', bidInfo)
+      .then((response) => {
+        console.log(response.data);
+        Swal.fire({
+          icon: 'success',
+          text: 'Success fully bid on this job',
+        });
+        navigate('/');
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
