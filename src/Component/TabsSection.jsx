@@ -14,9 +14,7 @@ const TabsSection = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/jobsCategory/${category}`, {
-        withCredentials: true,
-      })
+      .get(`http://localhost:5000/jobsCategory/${category}`)
       .then((response) => {
         // console.log(response);
         setFilterByCategory(response.data);

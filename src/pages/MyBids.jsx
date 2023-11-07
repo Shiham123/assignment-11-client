@@ -11,7 +11,9 @@ const MyBids = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/bidJob?email=${loggedInUser}`)
+      .get(`http://localhost:5000/bidJob?email=${loggedInUser}`, {
+        withCredentials: true,
+      })
       .then((response) => {
         console.log(response.data);
         setData(response.data);
