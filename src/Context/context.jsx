@@ -11,6 +11,7 @@ import {
 import PropTypes from 'prop-types';
 
 import globalAuth from '../firebase/firebase.config.js';
+import axios from 'axios';
 
 const AppContext = createContext(null);
 
@@ -52,12 +53,30 @@ const AppProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(globalAuth, (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
+      const userEmail = createContext?.email || user?.email;
+      const loggedInUser = { email: userEmail };
+
+      if (currentUser) {
+        axios
+          .post('http://localhost:5000/jwt', loggedInUser, {
+            withCredentials: true,
+          })
+          .then((response) => console.log(response))
+          .catch((error) => console.log(error));
+      } else {
+        axios
+          .post('http://localhost:5000/jwtLogout', loggedInUser, {
+            withCredentials: true,
+          })
+          .then((response) => console.log(response))
+          .catch((error) => console.log(error));
+      }
     });
 
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   const info = {
     createUserByEmailPassword,
