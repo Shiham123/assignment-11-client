@@ -18,11 +18,15 @@ const BidForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const formData = new FormData(event.target);
+    const bidPrice = formData.get('price');
 
     const bidInfo = {
+      employerEmail,
       jobTitle,
       loginUserEmail,
       jobDeadline,
+      bidPrice,
       status: 'pending',
     };
 
