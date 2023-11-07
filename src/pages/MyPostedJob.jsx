@@ -11,7 +11,9 @@ const MyPostedJob = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/jobPosted?email=${contextEmail}`)
+      .get(
+        `https://assignment-11-server-brown.vercel.app/jobPosted?email=${contextEmail}`
+      )
       .then((response) => {
         // console.log(response.data);
         setUserData(response.data);
@@ -21,7 +23,9 @@ const MyPostedJob = () => {
 
   const deleteJob = (id) => {
     axios
-      .delete(`http://localhost:5000/jobPosted/id/${id}`)
+      .delete(
+        `https://assignment-11-server-brown.vercel.app/jobPosted/id/${id}`
+      )
       .then((response) => {
         console.log(response);
         const updateData = userData.filter((item) => item._id !== id);

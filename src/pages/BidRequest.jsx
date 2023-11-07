@@ -11,7 +11,9 @@ const BidRequest = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/bidJob/bid?email=${loggedInEmployer}`)
+      .get(
+        `https://assignment-11-server-brown.vercel.app/bidJob/bid?email=${loggedInEmployer}`
+      )
       .then((response) => {
         console.log(response);
         setBidData(response.data);
@@ -32,7 +34,10 @@ const BidRequest = () => {
     setBidData(updatedStatus);
 
     axios
-      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
+      .patch(
+        `https://assignment-11-server-brown.vercel.app/bidJob/bid/${id}`,
+        statusData
+      )
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
@@ -49,7 +54,10 @@ const BidRequest = () => {
 
     setBidData(updatedStatus);
     axios
-      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
+      .patch(
+        `https://assignment-11-server-brown.vercel.app/bidJob/bid/${id}`,
+        statusData
+      )
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };

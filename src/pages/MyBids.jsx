@@ -11,7 +11,9 @@ const MyBids = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/bidJob?email=${loggedInUser}`)
+      .get(
+        `https://assignment-11-server-brown.vercel.app/bidJob?email=${loggedInUser}`
+      )
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -31,7 +33,10 @@ const MyBids = () => {
 
     setData(updatedStatus);
     axios
-      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
+      .patch(
+        `https://assignment-11-server-brown.vercel.app/bidJob/bid/${id}`,
+        statusData
+      )
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };

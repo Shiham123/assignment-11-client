@@ -35,7 +35,10 @@ const UpdateJob = () => {
     };
 
     axios
-      .put(`http://localhost:5000/jobs/${_id}`, dataUpdate)
+      .put(
+        `https://assignment-11-server-brown.vercel.app/jobs/${_id}`,
+        dataUpdate
+      )
       .then((response) => {
         console.log(response);
         Swal.fire({
