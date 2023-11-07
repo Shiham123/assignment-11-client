@@ -20,11 +20,11 @@ const BidRequest = () => {
   }, [loggedInEmployer]);
 
   const handleAccept = (id) => {
-    const statusData = { status: 'confirm' };
+    const statusData = { status: 'progress' };
 
     const updatedStatus = bidData.map((item) => {
       if (item._id === id) {
-        return { ...item, status: 'confirm' };
+        return { ...item, status: 'progress' };
       }
       return item;
     });

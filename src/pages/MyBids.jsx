@@ -19,6 +19,23 @@ const MyBids = () => {
       .catch((error) => console.log(error));
   }, [loggedInUser]);
 
+  const handleComplete = (id) => {
+    const statusData = { status: 'completed' };
+
+    const updatedStatus = data.map((item) => {
+      if (item._id === id) {
+        return { ...item, status: 'completed' };
+      }
+      return item;
+    });
+
+    setData(updatedStatus);
+    axios
+      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
+      .then((response) => console.log(response.data))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="my-[3rem] mx-[2rem]">
       <div className="overflow-x-auto">
@@ -65,12 +82,15 @@ const MyBids = () => {
                       {status}
                     </td>
                     <td className="p-2">
-                      {status === 'confirm' ? (
-                        <button className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300">
+                      {status === 'progress' ? (
+                        <button
+                          onClick={() => handleComplete(_id)}
+                          className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                        >
                           complete
                         </button>
                       ) : (
-                        ''
+                        status === 'completed' && ''
                       )}
                     </td>
                   </tr>
