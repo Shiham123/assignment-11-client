@@ -95,8 +95,13 @@ const MyBids = () => {
                           className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix cursor-not-allowed"
                           disabled
                         >
-                          Pending
+                          Complete
                         </button>
+                      ) : status === 'rejected' ? (
+                        <ProgressBar
+                          percent={100}
+                          filledBackground="linear-gradient(to right, #ff0000, #ff0000)"
+                        />
                       ) : (
                         <button
                           onClick={() => handleComplete(_id)}
