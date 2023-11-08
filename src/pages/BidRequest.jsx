@@ -3,6 +3,9 @@ import { AppContext } from '../Context/context';
 import axios from 'axios';
 import { useState } from 'react';
 
+import 'react-step-progress-bar/styles.css';
+import { ProgressBar } from 'react-step-progress-bar';
+
 const BidRequest = () => {
   const context = useContext(AppContext);
   const [bidData, setBidData] = useState([]);
@@ -11,9 +14,7 @@ const BidRequest = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://assignment-11-server-brown.vercel.app/bidJob/bid?email=${loggedInEmployer}`
-      )
+      .get(`http://localhost:5000/bidJob/bid?email=${loggedInEmployer}`)
       .then((response) => {
         console.log(response);
         setBidData(response.data);
@@ -34,10 +35,7 @@ const BidRequest = () => {
     setBidData(updatedStatus);
 
     axios
-      .patch(
-        `https://assignment-11-server-brown.vercel.app/bidJob/bid/${id}`,
-        statusData
-      )
+      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
@@ -54,10 +52,7 @@ const BidRequest = () => {
 
     setBidData(updatedStatus);
     axios
-      .patch(
-        `https://assignment-11-server-brown.vercel.app/bidJob/bid/${id}`,
-        statusData
-      )
+      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
@@ -119,65 +114,32 @@ const BidRequest = () => {
                     <td className="text-sm md:text-xl lg:text-2xl font-poppins py-8 capitalize font-semibold">
                       {status}
                     </td>
-                    <td className="p-2 flex flex-col gap-4">
-                      {status === 'progress' ? (
-                        <div>
-                          <button
-                            onClick={() => handleAccept(_id)}
-                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                          >
-                            Accept Bid
-                          </button>
-                          <button
-                            onClick={() => handleReject(_id)}
-                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                          >
-                            Reject Bid
-                          </button>
-                        </div>
+                    <td className="p-2">
+                      {status === 'progress' || status === 'rejected' ? (
+                        <ProgressBar
+                          percent={status === 'progress' ? 50 : 100}
+                          filledBackground={
+                            status === 'progress'
+                              ? 'linear-gradient(to right, #fefb72, #f0bb31)'
+                              : 'linear-gradient(to right, #ff0000, #ff0000)'
+                          }
+                        />
+                      ) : status === 'completed' ? (
+                        <ProgressBar
+                          percent={100}
+                          filledBackground="linear-gradient(to right, #00ff00, #00ff00)" // Customize the gradient for the 'complete' state
+                        />
                       ) : (
-                        <div>
+                        <div className="flex flex-col gap-4">
                           <button
                             onClick={() => handleAccept(_id)}
-                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover-text-colorSix duration-300"
                           >
                             Accept Bid
                           </button>
                           <button
                             onClick={() => handleReject(_id)}
-                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                          >
-                            Reject Bid
-                          </button>
-                        </div>
-                      )}
-
-                      {status === 'rejected' ? (
-                        <div>
-                          <button
-                            onClick={() => handleAccept(_id)}
-                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                          >
-                            Accept Bid
-                          </button>
-                          <button
-                            onClick={() => handleReject(_id)}
-                            className="bg-colorSix hidden text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                          >
-                            Reject Bid
-                          </button>
-                        </div>
-                      ) : (
-                        <div>
-                          <button
-                            onClick={() => handleAccept(_id)}
-                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                          >
-                            Accept Bid
-                          </button>
-                          <button
-                            onClick={() => handleReject(_id)}
-                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
+                            className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover-bg-colorTwo hover-text-colorSix duration-300"
                           >
                             Reject Bid
                           </button>

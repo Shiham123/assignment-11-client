@@ -2,6 +2,9 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../Context/context';
 import axios from 'axios';
 
+import 'react-step-progress-bar/styles.css';
+import { ProgressBar } from 'react-step-progress-bar';
+
 const MyBids = () => {
   const context = useContext(AppContext);
   const { user } = context;
@@ -11,9 +14,7 @@ const MyBids = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://assignment-11-server-brown.vercel.app/bidJob?email=${loggedInUser}`
-      )
+      .get(`http://localhost:5000/bidJob?email=${loggedInUser}`)
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -33,10 +34,7 @@ const MyBids = () => {
 
     setData(updatedStatus);
     axios
-      .patch(
-        `https://assignment-11-server-brown.vercel.app/bidJob/bid/${id}`,
-        statusData
-      )
+      .patch(`http://localhost:5000/bidJob/bid/${id}`, statusData)
       .then((response) => console.log(response.data))
       .catch((error) => console.log(error));
   };
@@ -87,22 +85,25 @@ const MyBids = () => {
                       {status}
                     </td>
                     <td className="p-2">
-                      {status === 'progress' ? (
-                        <button
-                          onClick={() => handleComplete(_id)}
-                          className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
-                        >
-                          complete
-                        </button>
+                      {status === 'completed' ? (
+                        <ProgressBar
+                          percent={100}
+                          filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+                        />
                       ) : status === 'pending' ? (
                         <button
+                          className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix cursor-not-allowed"
                           disabled
-                          className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover:text-colorSix duration-300"
                         >
-                          complete
+                          Pending
                         </button>
                       ) : (
-                        ''
+                        <button
+                          onClick={() => handleComplete(_id)}
+                          className="bg-colorSix text-colorOne py-4 px-8 rounded-lg font-poppins font-semibold tracking-wider capitalize border-2 border-colorSix hover:bg-colorTwo hover-text-colorSix duration-300"
+                        >
+                          Complete
+                        </button>
                       )}
                     </td>
                   </tr>

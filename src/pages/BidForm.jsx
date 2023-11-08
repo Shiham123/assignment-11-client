@@ -31,7 +31,7 @@ const BidForm = (props) => {
     };
 
     axios
-      .post('https://assignment-11-server-brown.vercel.app/bidJob', bidInfo)
+      .post('http://localhost:5000/bidJob', bidInfo)
       .then((response) => {
         console.log(response.data);
         Swal.fire({

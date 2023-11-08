@@ -31,7 +31,7 @@ const AddJob = () => {
     };
 
     axios
-      .post('https://assignment-11-server-brown.vercel.app/jobs', jobInfo)
+      .post('http://localhost:5000/jobs', jobInfo)
       .then((response) => {
         console.log(response.data);
         Swal.fire({

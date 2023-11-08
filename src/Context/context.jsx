@@ -58,24 +58,16 @@ const AppProvider = ({ children }) => {
 
       if (currentUser) {
         axios
-          .post(
-            'https://assignment-11-server-brown.vercel.app/jwt',
-            loggedInUser,
-            {
-              withCredentials: true,
-            }
-          )
+          .post('http://localhost:5000/jwt', loggedInUser, {
+            withCredentials: true,
+          })
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
       } else {
         axios
-          .post(
-            'https://assignment-11-server-brown.vercel.app/jwtLogout',
-            loggedInUser,
-            {
-              withCredentials: true,
-            }
-          )
+          .post('http://localhost:5000/jwtLogout', loggedInUser, {
+            withCredentials: true,
+          })
           .then((response) => console.log(response))
           .catch((error) => console.log(error));
       }

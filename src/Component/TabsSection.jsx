@@ -14,9 +14,7 @@ const TabsSection = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://assignment-11-server-brown.vercel.app/jobsCategory/${category}`
-      )
+      .get(`http://localhost:5000/jobsCategory/${category}`)
       .then((response) => {
         // console.log(response);
         setFilterByCategory(response.data);
