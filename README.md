@@ -1,8 +1,17 @@
-# React + Vite
+# feature one : this project has a database feature.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# feature two : this project has a add database post method
 
-Currently, two official plugins are available:
+# feature three : this project has a delete method to apply on posted job
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# feature four : this project has a update method from live
+
+# feature five : this project has a user accepted for job bid request
+
+## live link one - https://assignment-11-26ced.firebaseapp.com/
+
+## live link two - https://assignment-11-26ced.web.app/
+
+## client side link - https://github.com/Porgramming-Hero-web-course/b8a11-client-side-Shiham123
+
+## server side link - https://github.com/Porgramming-Hero-web-course/b8a11-server-side-Shiham123
