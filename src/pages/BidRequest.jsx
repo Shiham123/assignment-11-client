@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import 'react-step-progress-bar/styles.css';
 import { ProgressBar } from 'react-step-progress-bar';
+import { Helmet } from 'react-helmet-async';
 
 const BidRequest = () => {
   const context = useContext(AppContext);
@@ -67,6 +68,9 @@ const BidRequest = () => {
 
   return (
     <div className="my-[3rem] mx-[2rem]">
+      <Helmet>
+        <title>Job portal || Bid Request</title>
+      </Helmet>
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto m-auto text-center">
           <thead>

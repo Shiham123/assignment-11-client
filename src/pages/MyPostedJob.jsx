@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../Context/context';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const MyPostedJob = () => {
   const context = useContext(AppContext);
@@ -36,6 +37,9 @@ const MyPostedJob = () => {
 
   return (
     <div className="flex flex-col justify-center items-center md:grid md:grid-cols-2 lg:grid lg:grid-cols-3 gap-8 my-[5rem]">
+      <Helmet>
+        <title>Job portal || My Posted job</title>
+      </Helmet>
       {userData.map((item) => {
         const { _id, jobTitle, jobCategory } = item;
         return (

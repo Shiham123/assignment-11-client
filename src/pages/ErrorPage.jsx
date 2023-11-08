@@ -1,10 +1,14 @@
 import Lottie from 'lottie-react';
 import ErrorElement from '../assets/Animation - 1699147951880.json';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const ErrorPage = () => {
   return (
     <div className="w-2/4 max-w-screen-2xl mx-auto">
+      <Helmet>
+        <title>Job Portal || Error</title>
+      </Helmet>
       <Lottie animationData={ErrorElement} />
       <div className="m-auto text-center my-8">
         <Link to={'/'}>

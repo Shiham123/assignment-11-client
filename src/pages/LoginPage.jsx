@@ -4,6 +4,7 @@ import { useContext, useRef } from 'react';
 import { AppContext } from '../Context/context';
 
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet-async';
 
 const LoginPage = () => {
   const context = useContext(AppContext);
@@ -57,6 +58,9 @@ const LoginPage = () => {
 
   return (
     <div className="m-auto text-center">
+      <Helmet>
+        <title>Job Portal || Login</title>
+      </Helmet>
       <h1 className="m-auto text-center mt-12 text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300">
         Login Form
       </h1>

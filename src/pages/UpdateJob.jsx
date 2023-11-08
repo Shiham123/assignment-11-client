@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const UpdateJob = () => {
   const loader = useLoaderData();
@@ -51,6 +52,9 @@ const UpdateJob = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Job Portal || Update Job</title>
+      </Helmet>
       <h1 className="m-auto text-center mt-12 text-2xl md:text-3xl lg:text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300 uppercase font-poppins">
         Update job
       </h1>

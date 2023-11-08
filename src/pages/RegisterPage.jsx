@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet-async';
 
 const RegisterPage = () => {
   const context = useContext(AppContext);
@@ -70,6 +71,9 @@ const RegisterPage = () => {
   return (
     <div className="">
       <ToastContainer />
+      <Helmet>
+        <title>Job Portal || Register</title>
+      </Helmet>
       <h1 className="m-auto text-center mt-12 text-4xl font-bold bg-colorFour py-4 text-colorFive rounded-lg hover:bg-colorOne hover:text-colorSix duration-300">
         Register Form
       </h1>
