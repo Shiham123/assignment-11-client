@@ -53,7 +53,7 @@ const AppProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(globalAuth, (currentUser) => {
       setUser(currentUser);
       setIsLoading(false);
-      const userEmail = createContext?.email || user?.email;
+      const userEmail = currentUser?.email || user?.email;
       const loggedInUser = { email: userEmail };
 
       if (currentUser) {
