@@ -3,6 +3,7 @@ import BannerSection from '../Component/BannerSection';
 import FaqSection from '../Component/FaqSection';
 import FooterSection from '../Component/FooterSection';
 import TabsSection from '../Component/TabsSection';
+import SliderSection from '../Component/SliderSection';
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       <BannerSection />
       <TabsSection />
       <FaqSection />
+      <SliderSection />
       <FooterSection />
     </>
   );
